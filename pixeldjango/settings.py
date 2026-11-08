@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,13 +22,50 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4^43u$bc8nlu(ffs39ibx8m=s^(pswccz%-mjubs%e5ee4ygrq'
+ON_VERCEL = os.environ.get('VERCEL') == '1'
+DEBUG = os.environ.get(
+    'DJANGO_DEBUG', 'false' if ON_VERCEL else 'true'
+).strip().lower() in {'1', 'true', 'yes', 'on'}
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    if not DEBUG:
+        raise ImproperlyConfigured(
+            'Set DJANGO_SECRET_KEY in the deployment environment.'
+        )
+    SECRET_KEY = 'django-insecure-local-development-only-key'
 
-ALLOWED_HOSTS = []
+
+def _environment_list(name):
+    return [
+        value.strip()
+        for value in os.environ.get(name, '').split(',')
+        if value.strip()
+    ]
+
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS += _environment_list('DJANGO_ALLOWED_HOSTS')
+ALLOWED_HOSTS += [
+    os.environ[name]
+    for name in ('VERCEL_URL', 'VERCEL_PROJECT_PRODUCTION_URL')
+    if os.environ.get(name)
+]
+
+CSRF_TRUSTED_ORIGINS = _environment_list('DJANGO_CSRF_TRUSTED_ORIGINS')
+CSRF_TRUSTED_ORIGINS += [
+    f'https://{os.environ[name]}'
+    for name in ('VERCEL_URL', 'VERCEL_PROJECT_PRODUCTION_URL')
+    if os.environ.get(name)
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SECURE_HSTS_SECONDS = int(
+    os.environ.get('DJANGO_SECURE_HSTS_SECONDS', '0' if DEBUG else '31536000')
+)
 
 
 # Application definition
@@ -115,14 +155,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
-}
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
