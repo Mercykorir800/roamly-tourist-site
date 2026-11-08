@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Roamly | Find your somewhere{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-content">
+        <p class="eyebrow text-white">LESS SCROLLING. MORE WANDERING.</p>
+        <h1>Find your<br><span>somewhere.</span></h1>
+        <p class="hero-copy">Big views, little villages, and the stories you’ll bring home. Your next favorite place is out there.</p>
+        <a class="btn btn-light btn-lg rounded-pill px-4" href="#destinations">Explore destinations <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="hero-caption">Somewhere in the Dolomites, Italy</div>
+</section>
+
+<section class="section-space" id="destinations">
+    <div class="container">
+        <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
+            <div>
+                <p class="eyebrow">A FEW PLACES TO BEGIN</p>
+                <h2>Out there is calling.</h2>
+            </div>
+            <p class="section-intro mb-1">Pick a mood, follow a path, and let the good stories happen along the way.</p>
+        </div>
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <article class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Colorful villages along the Italian coastline">
+                    <div class="destination-caption"><span>ITALY</span><h3>Coastal daydreams</h3></div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Mountain peaks rising above a green valley">
+                    <div class="destination-caption"><span>THE DOLOMITES</span><h3>Take the high road</h3></div>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="A winding path through a sunlit landscape">
+                    <div class="destination-caption"><span>NEW HORIZONS</span><h3>Go a little further</h3></div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="quote-band">
+    <div class="container text-center">
+        <p class="eyebrow text-white-50">YOUR NEXT CHAPTER STARTS OUT THERE</p>
+        <h2>Make room for the unexpected.</h2>
+        <a class="btn btn-outline-light rounded-pill px-4 mt-3" href="{% url 'about' %}">Get to know Roamly</a>
+    </div>
+</section>
+{% endblock %}

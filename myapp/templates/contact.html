@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact | Roamly{% endblock %}
+
+{% block content %}
+<section class="page-hero contact-hero">
+    <div class="container">
+        <p class="eyebrow text-white">WE’RE ALL EARS</p>
+        <h1>Where are you<br>dreaming of?</h1>
+        <p class="hero-copy">Tell us what’s on your mind. We’d love to hear about your next adventure.</p>
+    </div>
+</section>
+
+<section class="section-space">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <p class="eyebrow">SAY HELLO</p>
+                <h2 class="display-heading">Let’s talk travel.</h2>
+                <p class="body-copy mb-4">Looking for a little inspiration or have a question about Roamly? Drop us a line and we’ll be happy to chat.</p>
+                <div class="contact-detail">
+                    <span class="contact-icon" aria-hidden="true">@</span>
+                    <div><span class="detail-label">EMAIL US</span><a href="mailto:hello@roamly.example">hello@roamly.example</a></div>
+                </div>
+                <div class="contact-detail">
+                    <span class="contact-icon" aria-hidden="true">↗</span>
+                    <div><span class="detail-label">FOLLOW THE JOURNEY</span><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Find us on Instagram</a></div>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <div class="contact-note">
+                    <p class="eyebrow">A GOOD PLACE TO START</p>
+                    <h3>What does your perfect trip look like?</h3>
+                    <p>Slow mornings by the sea? A trail that ends above the clouds? Send us an email and tell us what kind of places make you feel most alive.</p>
+                    <a class="btn btn-brand rounded-pill px-4 mt-2" href="mailto:hello@roamly.example?subject=Let%27s%20talk%20travel">Write us an email <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

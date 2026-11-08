@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}About | Roamly{% endblock %}
+
+{% block content %}
+<section class="page-hero about-hero">
+    <div class="container">
+        <p class="eyebrow text-white">A NOTE FROM THE ROAD</p>
+        <h1>Travel is better<br>when it feels like you.</h1>
+    </div>
+</section>
+
+<section class="section-space">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <img class="about-image" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Quiet alpine lake reflecting the mountains at sunset">
+            </div>
+            <div class="col-lg-6">
+                <p class="eyebrow">WHY WE ROAM</p>
+                <h2 class="display-heading">The best souvenirs are the stories.</h2>
+                <p class="body-copy">Roamly is for the curious ones: the early risers, the scenic-route takers, and anyone who has ever wished a trip could last one more day.</p>
+                <p class="body-copy">We share inspiration to help you find places that feel personal, travel at your own pace, and leave a little room for the detours. No checklist required—just an open mind and somewhere to begin.</p>
+                <a class="btn btn-brand rounded-pill px-4 mt-2" href="{% url 'contact' %}">Let’s plan something</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="values-section section-space">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="eyebrow">OUR KIND OF TRAVEL</p>
+            <h2>Go thoughtfully. Come back fuller.</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4"><div class="value-card"><span class="value-number">01</span><h3>Stay curious</h3><p>Follow the little details and let new places surprise you.</p></div></div>
+            <div class="col-md-4"><div class="value-card"><span class="value-number">02</span><h3>Take your time</h3><p>There’s no rush to see it all. Be where your feet are.</p></div></div>
+            <div class="col-md-4"><div class="value-card"><span class="value-number">03</span><h3>Leave it lovely</h3><p>Respect the places and people that make a journey special.</p></div></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
